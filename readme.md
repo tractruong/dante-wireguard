@@ -1,6 +1,19 @@
-# Dante-WireGuard Docker Container
+# 🛡️ Dante-WireGuard Docker Container Overview
 
-This Docker container combines Dante SOCKS proxy server with WireGuard VPN, providing a secure and flexible proxy solution. The container runs a SOCKS5 proxy server that routes all traffic through a WireGuard VPN connection.
+This Docker container combines **Dante** (SOCKS5 proxy) and **WireGuard VPN** to create a secure proxy solution. 
+The container runs a SOCKS5 proxy server that routes all traffic through a WireGuard VPN connection.
+
+```mermaid
+flowchart LR
+    subgraph Docker_Container
+        A[Dante SOCKS5 Proxy]
+        B[WireGuard VPN Tunnel]
+        A --> B
+    end
+
+    Client -->|SOCKS5| A
+    B -->|Encrypted Traffic| Internet[Internet]
+```
 
 ## Features
 
@@ -53,7 +66,7 @@ Place your WireGuard configuration in `wg0.conf` before building the container. 
 
 Once the container is running, you can use the SOCKS5 proxy at:
 ```
-curl --socks5-hostname 192.168.1.158:1080 https://ifconfig.me
+curl --socks5-hostname <ip-host>:1080 https://ifconfig.me
 ```
 
 ## Security Considerations
